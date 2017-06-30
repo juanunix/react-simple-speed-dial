@@ -1,0 +1,6 @@
+1. set up redux
+2. add bookmarks
+3. create bookmarks listing component
+4. create bookmarks component
+    - add props to bookmarks
+5. add bookmarks listing mapping to store from bookmark listing component
