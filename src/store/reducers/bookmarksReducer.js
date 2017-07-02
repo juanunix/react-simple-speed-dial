@@ -1,4 +1,4 @@
-let defaultState = {
+const bookmarksState = {
     bookmarks: [
         {
             id: 1,
@@ -10,16 +10,13 @@ let defaultState = {
             url: 'http://messenger.com'
         }
     ]
+
 };
 
-const bookmarksReducer = (state = defaultState, action) => {
-    if (action.type = 'OPEN_NEW_BOOKMARK_MODAL') {
-        state = {
-            ...state,
-            isNewBookmarkModalOpened: true
-        }
-    }
+const bookmarksReducer = (state = bookmarksState, action) => {
+
     return state;
 };
+
 
 export default bookmarksReducer

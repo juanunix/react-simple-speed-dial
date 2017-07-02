@@ -16,13 +16,13 @@ class BookmarksGrid extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        bookmarks: state.bookmarks
+        bookmarks: state.bookmarksReducer.bookmarks
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
         return {
-            openNewBoomarkModal: () => dispatch({
+            openNewBookmarkModal: () => dispatch({
                 type: 'OPEN_NEW_BOOKMARK_MODAL'
             })
         }

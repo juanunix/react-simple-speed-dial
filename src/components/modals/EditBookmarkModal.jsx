@@ -1,18 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
-class NewBookmarkModal extends React.Component {
-
-
-
-    render(){
+class EditBookmarkModal extends React.Component {
+    render() {
         return (
             <div className={this.props.isOpened ? 'is-active modal' : 'modal'}>
                 <div className="modal-background" onClick={this.props.closeModal.bind(this)} />
-
                 <div className="modal-content">
                     <div className="card">
                         <div className="card-header">
-                            <h2 className="card-header-title">New bookmark</h2>
+                            <h2 className="card-header-title">Edit bookmark</h2>
                         </div>
                         <div className="card-content">
                             <div className="field">
@@ -33,7 +29,7 @@ class NewBookmarkModal extends React.Component {
 
                             </div>
                             <div className="field">
-                                <button className="button" onClick={this.props.saveBookmark} > Save </button>
+                                <button className="button"  > Save </button>
 
                             </div>
                         </div>
@@ -45,21 +41,21 @@ class NewBookmarkModal extends React.Component {
             </div>
         )
     }
-
 }
+
 
 const mapStateToProps = (state) => {
     return {
-        isOpened: state.modalsReducer.modals.newBookmark.isOpened
+        isOpened: state.modalsReducer.modals.editBookmark.isOpened
     }
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        closeModal: () => {
-            dispatch({
-                type: 'CLOSE_NEW_BOOKMARK_MODAL'
-            })}
+        closeModal: () => dispatch({
+            type: 'CLOSE_EDIT_BOOKMARK_MODAL'
+        })
     }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(NewBookmarkModal)
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditBookmarkModal);
