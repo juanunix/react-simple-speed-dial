@@ -6,8 +6,9 @@ class BookmarksGrid extends React.Component {
         return (
             <div className="bookmark__grid">
                 {this.props.bookmarks.map((singleBookmark, key) => {
-                    return <Bookmark key={key} id={singleBookmark.id} url={singleBookmark.url}/>
+                    return <Bookmark key={key} name={singleBookmark.name} id={singleBookmark.id} url={singleBookmark.url}/>
                 })}
+                <button onClick={this.props.openNewBookmarkModal}> New Bookmark </button>
             </div>
         );
     }
@@ -20,9 +21,11 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-
-    }
+        return {
+            openNewBoomarkModal: () => dispatch({
+                type: 'OPEN_NEW_BOOKMARK_MODAL'
+            })
+        }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookmarksGrid);

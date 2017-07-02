@@ -1,19 +1,5 @@
 import { createStore } from 'redux';
-let defaultState = {
-    bookmarks: [
-        {
-            id: 1,
-            url: 'http://github.com'
-        }, {
-            id: 2,
-            url: 'http://messenger.com'
-        }
-    ]
-};
-
-const bookmarksReducer = (state = defaultState) => {
-    return state;
-};
+import bookmarksReducer from './reducers/bookmarksReducer';
 
 const store = createStore(bookmarksReducer);
 
