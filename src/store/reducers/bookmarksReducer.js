@@ -24,7 +24,20 @@ const bookmarksState = {
 };
 
 const bookmarksReducer = (state = bookmarksState, action) => {
-
+    if (action.type === 'DELETE_BOOKMARK') {
+        state = {
+            ...state,
+            bookmarks: state.bookmarks.filter(bookmark => {
+                return bookmark.url !== action.urlToDelete;
+            })
+        }
+    }
+    if (action.type === 'ADD_NEW_BOOKMARK') {
+        state = {
+            ...state,
+            bookmarks: [...state.bookmarks, action.newBookmark]
+        }
+    }
     return state;
 };
 

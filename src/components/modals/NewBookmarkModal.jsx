@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import ModalForm from './ModalForm';
+import ModalFormWrapper from './ModalFormWrapper';
 class NewBookmarkModal extends React.Component {
 
 
@@ -11,7 +11,7 @@ class NewBookmarkModal extends React.Component {
             <div className={this.props.isOpened ? 'is-active modal' : 'modal'}>
                 <div className="modal-background" onClick={this.props.closeModal.bind(this)} />
 
-                <ModalForm type="new" title="Enter new bookmark"/>
+                <ModalFormWrapper addNewBookmark={this.props.addNewBookmark.bind(this)} type="new" title="Enter new bookmark"/>
                 <button onClick={this.props.closeModal.bind(this)} className="modal-close"/>
             </div>
         )
@@ -30,7 +30,13 @@ const mapDispatchToProps = (dispatch) => {
         closeModal: () => {
             dispatch({
                 type: 'CLOSE_NEW_BOOKMARK_MODAL'
-            })}
+            })},
+        addNewBookmark: (newBookmark) => {
+            dispatch({
+                type: 'ADD_NEW_BOOKMARK',
+                newBookmark
+            })
+        }
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(NewBookmarkModal)

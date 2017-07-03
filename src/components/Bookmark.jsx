@@ -8,6 +8,7 @@ class Bookmark extends React.Component {
                     <p className="bookmark__name">{this.props.name}</p>
                 </a>
                 <button onClick={this.props.openEditModal.bind(this)} className="button">Edit</button>
+                <button onClick={this.props.deleteBookmark.bind(this, this.props.url)} className="button is-danger">Delete </button>
             </div>
 
         )
@@ -23,6 +24,12 @@ const mapDispatchToProps = (dispatch) => {
         openEditModal: () => {
             dispatch({
                 type: 'OPEN_EDIT_BOOKMARK_MODAL'
+            })
+        },
+        deleteBookmark: (urlToDelete) => {
+            dispatch({
+                type: 'DELETE_BOOKMARK',
+                urlToDelete
             })
         }
     }

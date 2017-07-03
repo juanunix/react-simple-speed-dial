@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import ModalForm from './ModalForm';
+import ModalForm from './ModalFormWrapper';
 class EditBookmarkModal extends React.Component {
     render() {
         return (
