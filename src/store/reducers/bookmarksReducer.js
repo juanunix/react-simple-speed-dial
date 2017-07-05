@@ -10,6 +10,10 @@ const bookmarksState = {
             url: 'http://messenger.com'
         }
     ],
+    editedBookmark: {
+        title: '',
+        url: ''
+    },
     currentlyOpenedTabs: [
         {
             title: 'GITHUB',
@@ -36,6 +40,16 @@ const bookmarksReducer = (state = bookmarksState, action) => {
         state = {
             ...state,
             bookmarks: [...state.bookmarks, action.newBookmark]
+        }
+    }
+    if (action.type === 'SET_EDITED_BOOKMARK') {
+        state = {
+            ...state,
+            editedBookmark: {
+                ...state.editedBookmark,
+                title: action.title,
+                url: action.url
+            }
         }
     }
     return state;

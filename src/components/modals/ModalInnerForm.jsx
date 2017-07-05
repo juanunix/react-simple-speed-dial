@@ -1,13 +1,15 @@
 import React from 'react';
+import {connect} from "react-redux";
 
 class ModalInnerForm extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            title: '',
-            url: ''
+            title: props.editedBookmarkUrl,
+            url: props.editedBookmarkTitle
         }
     }
+
     handleChange = (event) => {
         const name = event.target.name;
 
@@ -28,7 +30,12 @@ class ModalInnerForm extends React.Component {
             this.addNewBookmark();
         }
     }
-
+    componentWillReceiveProps(props) {
+        this.setState({
+            title: props.editedBookmarkTitle,
+            url: props.editedBookmarkUrl
+        })
+    }
     render() {
         return (
             <div className="card-content">
@@ -63,5 +70,18 @@ class ModalInnerForm extends React.Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        editedBookmarkTitle: state.bookmarksReducer.editedBookmark.title,
+        editedBookmarkUrl: state.bookmarksReducer.editedBookmark.url
+    }
 
-export default ModalInnerForm;  
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {}
+};
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ModalInnerForm);

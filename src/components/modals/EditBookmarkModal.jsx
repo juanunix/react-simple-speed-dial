@@ -1,12 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import ModalForm from './ModalFormWrapper';
+import ModalFormWrapper from './ModalFormWrapper';
 class EditBookmarkModal extends React.Component {
     render() {
         return (
             <div className={this.props.isOpened ? 'is-active modal' : 'modal'}>
                 <div className="modal-background" onClick={this.props.closeModal.bind(this)} />
-                <ModalForm type="edit" title="Edit bookmark"/>
+                <ModalFormWrapper type="edit" title="Edit bookmark"/>
                 <button onClick={this.props.closeModal.bind(this)} className="modal-close"/>
             </div>
         )

@@ -7,7 +7,7 @@ class Bookmark extends React.Component {
                 <a className="bookmark" href={this.props.url}>
                     <p className="bookmark__name">{this.props.title}</p>
                 </a>
-                <button onClick={this.props.openEditModal.bind(this)} className="button">Edit</button>
+                <button onClick={this.props.openEditModal.bind(this, this.props.title, this.props.url)} className="button">Edit</button>
                 <button onClick={this.props.deleteBookmark.bind(this, this.props.url)} className="button is-danger">Delete </button>
             </div>
 
@@ -21,9 +21,14 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        openEditModal: () => {
+        openEditModal: (editedBookmarkTitle, editedBookmarkUrl) => {
             dispatch({
-                type: 'OPEN_EDIT_BOOKMARK_MODAL'
+                type: 'OPEN_EDIT_BOOKMARK_MODAL',
+            }),
+            dispatch({
+                type: 'SET_EDITED_BOOKMARK',
+                title: editedBookmarkTitle,
+                url: editedBookmarkUrl
             })
         },
         deleteBookmark: (urlToDelete) => {

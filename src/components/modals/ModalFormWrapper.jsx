@@ -44,8 +44,9 @@ class ModalFormWrapper extends React.Component {
     }
 }
 const mapStateToProps = (state) => {
-    return {}
-}
+    return {
+    }
+};
 const mapDispatchToProps = (dispatch) => {
     return {
         closeModal: () => {
@@ -60,5 +61,5 @@ const mapDispatchToProps = (dispatch) => {
             dispatch
         }
     }
-}
+};
 export default connect(mapStateToProps, mapDispatchToProps)(ModalFormWrapper)
