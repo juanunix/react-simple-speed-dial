@@ -3,11 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="fe1d3344-01ce-4727-9be5-cef0b8ac2493" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Bookmark.jsx" afterPath="$PROJECT_DIR$/src/components/Bookmark.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/modals/EditBookmarkModal.jsx" afterPath="$PROJECT_DIR$/src/components/modals/EditBookmarkModal.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/modals/ModalFormWrapper.jsx" afterPath="$PROJECT_DIR$/src/components/modals/ModalFormWrapper.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/modals/ModalInnerForm.jsx" afterPath="$PROJECT_DIR$/src/components/modals/ModalInnerForm.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/store/reducers/bookmarksReducer.js" afterPath="$PROJECT_DIR$/src/store/reducers/bookmarksReducer.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -459,11 +454,18 @@
       <option name="project" value="LOCAL" />
       <updated>1499125277519</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="edit bookmark component now has inital state">
+      <created>1499295946623</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1499295946623</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22116000" />
+    <option name="totallyTimeSpent" value="22133000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -509,7 +511,8 @@
     <MESSAGE value="connected redux" />
     <MESSAGE value="currently opened tabs router" />
     <MESSAGE value="need to decompose modal inner form" />
-    <option name="LAST_COMMIT_MESSAGE" value="need to decompose modal inner form" />
+    <MESSAGE value="edit bookmark component now has inital state" />
+    <option name="LAST_COMMIT_MESSAGE" value="edit bookmark component now has inital state" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
