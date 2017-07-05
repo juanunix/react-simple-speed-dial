@@ -11,7 +11,7 @@ class NewBookmarkModal extends React.Component {
             <div className={this.props.isOpened ? 'is-active modal' : 'modal'}>
                 <div className="modal-background" onClick={this.props.closeModal.bind(this)} />
 
-                <ModalFormWrapper addNewBookmark={this.props.addNewBookmark.bind(this)} type="new" title="Enter new bookmark"/>
+                <ModalFormWrapper  type="new" title="Enter new bookmark"/>
                 <button onClick={this.props.closeModal.bind(this)} className="modal-close"/>
             </div>
         )

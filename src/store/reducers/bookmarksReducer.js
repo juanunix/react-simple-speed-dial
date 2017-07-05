@@ -2,11 +2,11 @@ const bookmarksState = {
     bookmarks: [
         {
             id: 1,
-            name: 'GitHub',
+            title: 'GitHub',
             url: 'http://github.com'
         }, {
             id: 2,
-            name: 'Messenger',
+            title: 'Messenger',
             url: 'http://messenger.com'
         }
     ],

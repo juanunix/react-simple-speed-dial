@@ -5,24 +5,18 @@ import { Link } from 'react-router-dom';
 import CurrentlyOpenedTabs from "../CurrentlyOpenedTabs";
 import {MemoryRouter} from 'react-router-dom';
 import ModalInnerForm from './ModalInnerForm';
+import {connect} from "react-redux";
 class ModalFormWrapper extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            url: '',
-            title: '',
-        }
+
+
+    addNewBookmark = (newBookmark) => {
+        if (newBookmark.title !== '' && newBookmark.url !== '')
+            this.props.addNewBookmark({
+                title: newBookmark.title,
+                url: newBookmark.url
+            })
     }
-    handleChange = (event) => {
-        const name = event.target.name;
-        this.setState({
-            [name]: event.target.value
-        });
-    }
-    addNewBookmark(newBookmark) {
-        if (this.state.title !== '' && this.state.url !== '')
-            this.props.addNewBookmark(newBookmark)
-    }
+
     render() {
         let self = this;
         return (
@@ -33,15 +27,15 @@ class ModalFormWrapper extends React.Component {
                 <div className="card">
                     <div className="card-header">
                         <Link to="/" className="card-header-title">{this.props.title}</Link>
-                        { this.props.type === 'new' ? <Link className="card-header-title is-info" to="/currently-opened">Add from currently opened</Link> : ''}
+                        { this.props.type === 'new' ? <Link className="card-header-title is-info" style={{color: '#4574aa'}} to="/currently-opened">Add from currently opened</Link> : ''}
                     </div>
-                        <Route exact path="/currently-opened" component={CurrentlyOpenedTabs}/>
-                        <Route key="form" exact path="/" component={ModalInnerForm}/>
-                    <div className="field">
-                        <button className="button" onClick={this.addNewBookmark.bind(this)} > Save </button>
-
-                    </div>
-                </div>
+                        <Route exact path="/currently-opened" render={(props) => (
+                            <CurrentlyOpenedTabs {...props} addFromCurrentlyOpened={this.addNewBookmark}/>
+                        )}/>
+                        <Route key="form" exact path="/" render={(props) => (
+                            <ModalInnerForm {...props} onAddNewBookmark={this.addNewBookmark}/>
+                            )}/>
+                  </div>
 
             </div>
             </MemoryRouter>
@@ -49,6 +43,22 @@ class ModalFormWrapper extends React.Component {
         )
     }
 }
-;
-
-export default ModalFormWrapper;
+const mapStateToProps = (state) => {
+    return {}
+}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        closeModal: () => {
+            dispatch({
+                type: 'CLOSE_NEW_BOOKMARK_MODAL'
+            })},
+        addNewBookmark: (newBookmark) => {
+            dispatch({
+                type: 'ADD_NEW_BOOKMARK',
+                newBookmark
+            })
+            dispatch
+        }
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(ModalFormWrapper)

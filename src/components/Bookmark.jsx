@@ -5,7 +5,7 @@ class Bookmark extends React.Component {
         return (
             <div>
                 <a className="bookmark" href={this.props.url}>
-                    <p className="bookmark__name">{this.props.name}</p>
+                    <p className="bookmark__name">{this.props.title}</p>
                 </a>
                 <button onClick={this.props.openEditModal.bind(this)} className="button">Edit</button>
                 <button onClick={this.props.deleteBookmark.bind(this, this.props.url)} className="button is-danger">Delete </button>

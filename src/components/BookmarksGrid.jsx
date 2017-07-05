@@ -6,7 +6,7 @@ class BookmarksGrid extends React.Component {
         return (
             <div className="bookmark__grid">
                 {this.props.bookmarks.map((singleBookmark, key) => {
-                    return <Bookmark key={key} name={singleBookmark.name} id={singleBookmark.id} url={singleBookmark.url}/>
+                    return <Bookmark key={key} title={singleBookmark.title} id={singleBookmark.id} url={singleBookmark.url}/>
                 })}
                 <button onClick={this.props.openNewBookmarkModal}> New Bookmark </button>
             </div>
