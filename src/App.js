@@ -6,6 +6,7 @@ import Store from './store/store.js';
 import { Router } from 'react-router';
 import './App.css';
 import '../node_modules/bulma/css/bulma.css';
+import ConfigWrapper from "./components/config/ConfigWrapper";
 
 class App extends Component {
   render() {
@@ -17,8 +18,8 @@ class App extends Component {
                 <BookmarksGrid/>
 
                 <Modals/>
+                <ConfigWrapper/>
             </div>
-
         </Provider>
     );
   }
