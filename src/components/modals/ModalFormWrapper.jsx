@@ -10,11 +10,15 @@ class ModalFormWrapper extends React.Component {
 
 
     addNewBookmark = (newBookmark) => {
-        if (newBookmark.title !== '' && newBookmark.url !== '')
+        if (newBookmark.title !== '' && newBookmark.url !== '') {
             this.props.addNewBookmark({
                 title: newBookmark.title,
                 url: newBookmark.url
-            })
+            });
+            this.props.closeModal();
+        }
+
+
     }
 
     render() {
