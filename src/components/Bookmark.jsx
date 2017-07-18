@@ -24,7 +24,7 @@ const mapDispatchToProps = (dispatch) => {
         openEditModal: (editedBookmarkTitle, editedBookmarkUrl) => {
             dispatch({
                 type: 'OPEN_EDIT_BOOKMARK_MODAL',
-            }),
+            });
             dispatch({
                 type: 'SET_EDITED_BOOKMARK',
                 title: editedBookmarkTitle,

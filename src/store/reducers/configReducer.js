@@ -6,7 +6,7 @@ const configState = {
 };
 
 const configReducer = (state = configState, action) => {
-    if (action.type = 'SET_BACKGROUND_URL') {
+    if (action.type === 'SET_BACKGROUND_URL') {
         state = {
             ...state,
             bgImageUrl: action.bgImageUrl

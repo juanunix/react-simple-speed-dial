@@ -22,7 +22,8 @@ class ModalInnerForm extends React.Component {
         console.log(this.state);
         this.props.onAddNewBookmark({
             title: this.state.title,
-            url: this.state.url
+            url: this.state.url,
+            actionType: this.props.type
         })
     }
     handleKeyPress = (event) => {

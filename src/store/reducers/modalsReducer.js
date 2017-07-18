@@ -21,7 +21,7 @@ const modalsState = {
 const modalReducer = (state = modalsState, action) => {
     if (action.type === 'OPEN_NEW_BOOKMARK_MODAL') {
         state = {
-            state: state,
+            ...state,
             modals: {
                 ...state.modals,
                 newBookmark: {
@@ -34,7 +34,7 @@ const modalReducer = (state = modalsState, action) => {
     }
     if (action.type === 'CLOSE_NEW_BOOKMARK_MODAL') {
         state = {
-            state: state,
+            ...state,
             modals: {
                 ...state.modals,
                 newBookmark: {

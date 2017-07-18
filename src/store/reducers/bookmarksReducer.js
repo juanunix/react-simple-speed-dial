@@ -52,6 +52,21 @@ const bookmarksReducer = (state = bookmarksState, action) => {
             }
         }
     }
+
+    if (action.type === 'UPDATE_BOOKMARK') {
+        state = {
+            ...state,
+            bookmarks: state.bookmarks.map((bookmark) => {
+                if (bookmark.title === state.editedBookmark.title) {
+                    return {
+                        ...bookmark,
+                        title: action.updatedBookmark.title,
+                        url: action.updatedBookmark.title
+                    }
+                } else return bookmark
+            })
+        }
+    }
     return state;
 };
 

@@ -22,9 +22,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        closeModal: () => dispatch({
-            type: 'CLOSE_EDIT_BOOKMARK_MODAL'
-        })
+        closeModal: () => {
+            return dispatch({
+                type: 'CLOSE_EDIT_BOOKMARK_MODAL'
+            })
+        }
     }
 };
 

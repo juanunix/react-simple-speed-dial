@@ -35,8 +35,8 @@ class BackgroundConfig extends React.Component {
                         <input value={this.state.bgImageUrl} onChange={this.updateStateFromInput} id="bg-image__input" type="url" className="input bg-image__input" placeholder="Enter url"/>
                     </p>
                 </div>
-                <button onClick={this.setBackgroundImage} className="button is-success">Save</button>
-                <button onClick={this.resetBackgroundImage} className="button is-danger">Reset</button>
+                <button onClick={() => this.setBackgroundImage} className="button is-success">Save</button>
+                <button onClick={() => this.resetBackgroundImage} className="button is-danger">Reset</button>
                 <p>Preview: </p>
                     <div style={{
                         width: 350,

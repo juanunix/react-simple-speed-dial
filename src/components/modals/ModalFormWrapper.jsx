@@ -10,11 +10,23 @@ class ModalFormWrapper extends React.Component {
 
 
     addNewBookmark = (newBookmark) => {
+        console.log('new bookmark action type ', newBookmark.actionType);
         if (newBookmark.title !== '' && newBookmark.url !== '') {
-            this.props.addNewBookmark({
-                title: newBookmark.title,
-                url: newBookmark.url
-            });
+            switch(newBookmark.actionType) {
+                case 'new':
+                    this.props.addNewBookmark({
+                        title: newBookmark.title,
+                        url: newBookmark.url
+                    });
+                    break;
+                case 'edit':
+                    this.props.updateBookmark({
+                        title: newBookmark.title,
+                        url: newBookmark.url
+                    });
+                    break;
+            }
+
             this.props.closeModal();
         }
 
@@ -37,7 +49,7 @@ class ModalFormWrapper extends React.Component {
                             <CurrentlyOpenedTabs {...props} addFromCurrentlyOpened={this.addNewBookmark}/>
                         )}/>
                         <Route key="form" exact path="/" render={(props) => (
-                            <ModalInnerForm {...props} onAddNewBookmark={this.addNewBookmark}/>
+                            <ModalInnerForm {...props} type={this.props.type} onAddNewBookmark={this.addNewBookmark}/>
                             )}/>
                   </div>
 
@@ -56,13 +68,24 @@ const mapDispatchToProps = (dispatch) => {
         closeModal: () => {
             dispatch({
                 type: 'CLOSE_NEW_BOOKMARK_MODAL'
-            })},
+            });
+            dispatch({
+                type: 'CLOSE_EDIT_BOOKMARK_MODAL'
+            })
+            },
+
         addNewBookmark: (newBookmark) => {
             dispatch({
                 type: 'ADD_NEW_BOOKMARK',
                 newBookmark
             })
-            dispatch
+        },
+
+        updateBookmark: (updatedBookmark) => {
+            dispatch({
+                type: 'UPDATE_BOOKMARK',
+                updatedBookmark
+            })
         }
     }
 };
