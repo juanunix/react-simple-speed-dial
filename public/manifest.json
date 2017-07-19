@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+  "name": "Simple speed dial",
+  "description": "Simple Chrome extension changing default speed dial into something more awesome.",
+  "version": "1",
+  "permissions": [
+    "activeTab",
+    "bookmarks",
+    "storage",
+    "tabs"
+  ],
+  "background" : {
+    "scripts" : ["./background.js"]
+  },
+  "chrome_url_overrides": {
+    "newtab": "./index.html"
+  }
+}

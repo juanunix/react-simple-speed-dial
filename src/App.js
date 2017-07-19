@@ -30,13 +30,13 @@ class App extends Component {
     );
   }
 }
-const mapStateToProps = (state) => {
-    return {
-        bgImageUrl: state.configReducer.bgImageUrl
-    }
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {}
-}
+// const mapStateToProps = (state) => {
+//     return {
+//         bgImageUrl: state.configReducer.bgImageUrl
+//     }
+// }
+//
+// const mapDispatchToProps = (dispatch) => {
+//     return {}
+// }
 export default App;

@@ -67,6 +67,14 @@ const bookmarksReducer = (state = bookmarksState, action) => {
             })
         }
     }
+
+    if (action.type === 'SET_FETCHED_BOOKMARKS') {
+
+        state = {
+            ...state,
+            bookmarks: [...state.bookmarks, ...action.fetchedBookmarks]
+        }
+    }
     return state;
 };
 

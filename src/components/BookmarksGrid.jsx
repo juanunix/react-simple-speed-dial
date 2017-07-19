@@ -1,7 +1,32 @@
+/* global chrome */
 import React from 'react';
 import {connect} from 'react-redux';
 import Bookmark from './Bookmark.jsx';
 class BookmarksGrid extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            extensionFolder: {}
+        };
+        this.fetchExtensionFolder('extensionFolder');
+    }
+
+    fetchExtensionFolder = (name) => {
+        chrome.storage.local.get(name, (extensionFolder) => {
+            this.fetchBookmarksFromFolder(extensionFolder);
+        })
+    };
+
+    fetchBookmarksFromFolder = (extensionFolder) => {
+        console.log(extensionFolder);
+        chrome.bookmarks.getChildren(extensionFolder.extensionFolder.id, (bookmarks) => {
+            this.props.updateFetchedBookmarks(bookmarks);
+            this.setState({
+                extensionFolder: extensionFolder.extensionFolder
+            })
+        })
+    };
+
     render() {
         return (
             <div className="bookmark__grid">
@@ -24,6 +49,11 @@ const mapDispatchToProps = (dispatch) => {
         return {
             openNewBookmarkModal: () => dispatch({
                 type: 'OPEN_NEW_BOOKMARK_MODAL'
+            }),
+
+            updateFetchedBookmarks: (fetchedBookmarks) => dispatch({
+                type: 'SET_FETCHED_BOOKMARKS',
+                fetchedBookmarks
             })
         }
 };
