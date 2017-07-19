@@ -8,7 +8,7 @@ class BookmarksGrid extends React.Component {
                 {this.props.bookmarks.map((singleBookmark, key) => {
                     return <Bookmark key={key} title={singleBookmark.title} id={singleBookmark.id} url={singleBookmark.url}/>
                 })}
-                <button onClick={this.props.openNewBookmarkModal.bind(this)}> New Bookmark </button>
+                <button onClick={this.props.openNewBookmarkModal.bind(this)} className="button is-info">New Bookmark</button>
             </div>
         );
     }

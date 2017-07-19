@@ -20,7 +20,7 @@ class BackgroundConfig extends React.Component {
           bgImageUrl: ''
       });
     };
-    
+
     setBackgroundImage = () => {
         this.props.setBackgroundImage(this.state.bgImageUrl);
         this.setState({

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Provider} from 'react-redux';
+import {connect, Provider} from 'react-redux';
 import Modals from './components/Modals.jsx';
 import BookmarksGrid from './components/BookmarksGrid.jsx';
 import Store from './store/store.js';
@@ -9,12 +9,18 @@ import '../node_modules/bulma/css/bulma.css';
 import ConfigWrapper from "./components/config/ConfigWrapper";
 
 class App extends Component {
+    constructor() {
+        super();
+        this.state = {
+            bgImageUrl: ''
+        }
+    }
   render() {
     return (
         <Provider store={Store}>
 
             <div className="app-container container">
-                <h1 style={{marginTop: 25}} className="title">Simple Speed Dial</h1>
+                <h1 style={{paddingTop: 25}} className="title">Simple Speed Dial</h1>
                 <BookmarksGrid/>
 
                 <Modals/>
@@ -24,5 +30,13 @@ class App extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+    return {
+        bgImageUrl: state.configReducer.bgImageUrl
+    }
+}
 
+const mapDispatchToProps = (dispatch) => {
+    return {}
+}
 export default App;
