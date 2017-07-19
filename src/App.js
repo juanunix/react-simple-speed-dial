@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect, Provider} from 'react-redux';
 import Modals from './components/Modals.jsx';
 import BookmarksGrid from './components/BookmarksGrid.jsx';
+import DebugComponent from './components/config/DebugComponent';
 import Store from './store/store.js';
 import { Router } from 'react-router';
 import './App.css';
@@ -25,6 +26,7 @@ class App extends Component {
 
                 <Modals/>
                 <ConfigWrapper/>
+                <DebugComponent/>
             </div>
         </Provider>
     );
