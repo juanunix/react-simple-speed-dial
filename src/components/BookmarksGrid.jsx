@@ -21,9 +21,12 @@ class BookmarksGrid extends React.Component {
         console.log(extensionFolder);
         chrome.bookmarks.getChildren(extensionFolder.extensionFolder.id, (bookmarks) => {
             this.props.updateFetchedBookmarks(bookmarks);
+
             this.setState({
                 extensionFolder: extensionFolder.extensionFolder
-            })
+            });
+
+            this.props.setExtensionFolder(extensionFolder.extensionFolder);
         })
     };
 
@@ -47,14 +50,28 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
         return {
-            openNewBookmarkModal: () => dispatch({
-                type: 'OPEN_NEW_BOOKMARK_MODAL'
-            }),
+            openNewBookmarkModal: () => {
+                dispatch({
+                    type: 'OPEN_NEW_BOOKMARK_MODAL'
+                });
+                dispatch({
+                    type: 'SET_EDITED_BOOKMARK',
+                    title: '',
+                    url: ''
+                })
+                },
 
             updateFetchedBookmarks: (fetchedBookmarks) => dispatch({
                 type: 'SET_FETCHED_BOOKMARKS',
                 fetchedBookmarks
-            })
+            }),
+
+            setExtensionFolder: (extensionFolder) => {
+                dispatch({
+                    type: 'SET_EXTENSION_FOLDER',
+                    extensionFolder
+                })
+            }
         }
 };
 

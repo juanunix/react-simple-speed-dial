@@ -40,7 +40,9 @@ const bookmarksReducer = (state = bookmarksState, action) => {
         state = {
             ...state,
             bookmarks: [...state.bookmarks, action.newBookmark]
-        }
+        };
+
+
     }
     if (action.type === 'SET_EDITED_BOOKMARK') {
         state = {
