@@ -6,12 +6,16 @@ import CurrentlyOpenedTabs from "../CurrentlyOpenedTabs";
 import {MemoryRouter} from 'react-router-dom';
 import ModalInnerForm from './ModalInnerForm';
 import {connect} from "react-redux";
+import {bindActionCreators} from 'redux';
+import {addNewBookmark} from '../../store/actions/bookmarksActions';
+import {closeNewBookmarkModal} from '../../store/actions/modalsActions';
 class ModalFormWrapper extends React.Component {
 
 
     addNewBookmark = (newBookmark) => {
         console.log('new bookmark action type ', newBookmark.actionType);
         if (newBookmark.title !== '' && newBookmark.url !== '') {
+
             switch(newBookmark.actionType) {
                 case 'new':
                     this.props.addNewBookmark({
@@ -28,13 +32,13 @@ class ModalFormWrapper extends React.Component {
             }
 
             this.props.closeModal();
+
         }
 
 
     }
 
     render() {
-        let self = this;
         return (
 
             <MemoryRouter>
@@ -64,6 +68,7 @@ const mapStateToProps = (state) => {
     }
 };
 const mapDispatchToProps = (dispatch) => {
+
     return {
         closeModal: () => {
             dispatch({
@@ -88,5 +93,6 @@ const mapDispatchToProps = (dispatch) => {
             })
         }
     }
+
 };
 export default connect(mapStateToProps, mapDispatchToProps)(ModalFormWrapper)

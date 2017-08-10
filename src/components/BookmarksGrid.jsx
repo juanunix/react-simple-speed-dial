@@ -2,6 +2,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Bookmark from './Bookmark.jsx';
+import {openNewBookmarkModal} from '../store/actions/modalsActions';
+import {getTestBookmark, setTestBookmark} from '../store/actions/debugActions';
+import {bindActionCreators} from 'redux';
 class BookmarksGrid extends React.Component {
     constructor() {
         super();
@@ -29,7 +32,6 @@ class BookmarksGrid extends React.Component {
             this.props.setExtensionFolder(extensionFolder.extensionFolder);
         })
     };
-
     render() {
         return (
             <div className="bookmark__grid">
@@ -73,6 +75,7 @@ const mapDispatchToProps = (dispatch) => {
                 })
             }
         }
+
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookmarksGrid);

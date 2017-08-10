@@ -22,6 +22,7 @@ class ConfigWrapper extends React.Component {
             <div className="config-wrapper">
                 { this.state.isConfigOpened ? closeConfigButton : openConfigButton}
                 { this.state.isConfigOpened ? <BackgroundConfig onCloseConfig={() => this.setConfigState(false)}/> : '' }
+
             </div>
         )
     }
