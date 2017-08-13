@@ -1,6 +1,14 @@
+/* global chrome */
 import React from 'react';
 import {connect} from 'react-redux';
 class Bookmark extends React.Component {
+
+    deleteBookmark = () => {
+            chrome.bookmarks.remove(this.props.id, () => {
+                this.props.deleteBookmark(this.props.id);
+            })
+       
+    }
     render() {
         return (
             <div>
@@ -8,7 +16,7 @@ class Bookmark extends React.Component {
                     <p className="bookmark__name">{this.props.title}</p>
                 </a>
                 <button onClick={this.props.openEditModal.bind(this, this.props.title, this.props.url)} className="button">Edit</button>
-                <button onClick={this.props.deleteBookmark.bind(this, this.props.url)} className="button is-danger">Delete </button>
+                <button onClick={this.deleteBookmark} className="button is-danger">Delete </button>
             </div>
 
         )
@@ -16,7 +24,8 @@ class Bookmark extends React.Component {
 
 }
 const mapStateToProps = (state) => {
-    return {}
+    return {
+    }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -31,10 +40,10 @@ const mapDispatchToProps = (dispatch) => {
                 url: editedBookmarkUrl
             })
         },
-        deleteBookmark: (urlToDelete) => {
+        deleteBookmark: (idToDelete) => {
             dispatch({
                 type: 'DELETE_BOOKMARK',
-                urlToDelete
+                idToDelete
             })
         }
     }

@@ -1,10 +1,8 @@
+/* global chrome */
 import React from 'react';
 import {connect} from 'react-redux';
-
 import ModalFormWrapper from './ModalFormWrapper';
 class NewBookmarkModal extends React.Component {
-
-
 
     render(){
         return (

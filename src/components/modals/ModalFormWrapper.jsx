@@ -1,7 +1,7 @@
+/* global chrome */
 import React from 'react';
 import { Route } from 'react-router';
 import { Link } from 'react-router-dom';
-
 import CurrentlyOpenedTabs from "../CurrentlyOpenedTabs";
 import {MemoryRouter} from 'react-router-dom';
 import ModalInnerForm from './ModalInnerForm';
@@ -12,32 +12,52 @@ import {closeNewBookmarkModal} from '../../store/actions/modalsActions';
 class ModalFormWrapper extends React.Component {
 
 
-    addNewBookmark = (newBookmark) => {
+    delegateBookmarkAction = (newBookmark) => {
         console.log('new bookmark action type ', newBookmark.actionType);
         if (newBookmark.title !== '' && newBookmark.url !== '') {
-
             switch(newBookmark.actionType) {
                 case 'new':
-                    this.props.addNewBookmark({
-                        title: newBookmark.title,
-                        url: newBookmark.url
-                    });
+                    this.prepareAddingNewBookmark(newBookmark);
                     break;
                 case 'edit':
-                    this.props.updateBookmark({
-                        title: newBookmark.title,
-                        url: newBookmark.url
-                    });
+                    this.prepareUpdatingNewBookmark(newBookmark);
                     break;
             }
-
             this.props.closeModal();
 
         }
 
 
     }
+    prepareAddingNewBookmark(newBookmark) {
+        const extensionFolder = this.props.extensionFolder;
 
+        const bookmarkToCreate = {
+            title: newBookmark.title,
+            url: newBookmark.url,
+            parentId: extensionFolder.id
+        };
+
+        console.log(bookmarkToCreate);
+        console.log(typeof bookmarkToCreate);
+
+        chrome.bookmarks.create(bookmarkToCreate, (result) => {
+            
+            if (result === 'error')
+                alert('cannot create bookamrk!');
+
+            this.props.addNewBookmark(newBookmark)
+
+        });
+        
+    }
+
+    prepareUpdatingNewBookmark(newBookmark) {
+        this.props.updateBookmark({
+            newBookmarkTitle: newBookmark.title,
+            newBookmarkUrl: newBookmark.url
+        })
+    }
     render() {
         return (
 
@@ -50,10 +70,10 @@ class ModalFormWrapper extends React.Component {
                         { this.props.type === 'new' ? <Link className="card-header-title is-info" style={{color: '#4574aa'}} to="/currently-opened">Add from currently opened</Link> : ''}
                     </div>
                         <Route exact path="/currently-opened" render={(props) => (
-                            <CurrentlyOpenedTabs {...props} addFromCurrentlyOpened={this.addNewBookmark}/>
+                            <CurrentlyOpenedTabs {...props} addFromCurrentlyOpened={this.delegateBookmarkAction}/>
                         )}/>
                         <Route key="form" exact path="/" render={(props) => (
-                            <ModalInnerForm {...props} type={this.props.type} onAddNewBookmark={this.addNewBookmark}/>
+                            <ModalInnerForm {...props} type={this.props.type} onAddNewBookmark={this.delegateBookmarkAction}/>
                             )}/>
                   </div>
 
@@ -65,6 +85,7 @@ class ModalFormWrapper extends React.Component {
 }
 const mapStateToProps = (state) => {
     return {
+        extensionFolder: state.chromeReducer.extensionFolder
     }
 };
 const mapDispatchToProps = (dispatch) => {
@@ -74,9 +95,11 @@ const mapDispatchToProps = (dispatch) => {
             dispatch({
                 type: 'CLOSE_NEW_BOOKMARK_MODAL'
             });
+
             dispatch({
                 type: 'CLOSE_EDIT_BOOKMARK_MODAL'
             })
+
             },
 
         addNewBookmark: (newBookmark) => {

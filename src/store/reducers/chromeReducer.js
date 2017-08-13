@@ -1,6 +1,3 @@
-/**
- * Created by belothar on 19.07.17.
- */
 const initialState = {
     extensionFolder: {}
 }

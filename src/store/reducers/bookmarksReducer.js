@@ -1,15 +1,5 @@
 const bookmarksState = {
-    bookmarks: [
-        {
-            id: 1,
-            title: 'GitHub',
-            url: 'http://github.com'
-        }, {
-            id: 2,
-            title: 'Messenger',
-            url: 'http://messenger.com'
-        }
-    ],
+    bookmarks: [],
     editedBookmark: {
         title: '',
         url: ''
@@ -32,7 +22,7 @@ const bookmarksReducer = (state = bookmarksState, action) => {
         state = {
             ...state,
             bookmarks: state.bookmarks.filter(bookmark => {
-                return bookmark.url !== action.urlToDelete;
+                return bookmark.id !== action.idToDelete;
             })
         }
     }
@@ -71,7 +61,6 @@ const bookmarksReducer = (state = bookmarksState, action) => {
     }
 
     if (action.type === 'SET_FETCHED_BOOKMARKS') {
-
         state = {
             ...state,
             bookmarks: [...state.bookmarks, ...action.fetchedBookmarks]
