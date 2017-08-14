@@ -5,14 +5,6 @@ const bookmarksState = {
         url: ''
     },
     currentlyOpenedTabs: [
-        {
-            title: 'GITHUB',
-            url: 'github.test'
-        },
-        {
-            title: 'MESSENGER',
-            url: 'messenger.test'
-        }
     ]
 
 };
@@ -40,7 +32,8 @@ const bookmarksReducer = (state = bookmarksState, action) => {
             editedBookmark: {
                 ...state.editedBookmark,
                 title: action.title,
-                url: action.url
+                url: action.url,
+                id: action.id
             }
         }
     }

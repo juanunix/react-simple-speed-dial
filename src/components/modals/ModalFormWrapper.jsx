@@ -14,6 +14,8 @@ class ModalFormWrapper extends React.Component {
 
     delegateBookmarkAction = (newBookmark) => {
         console.log('new bookmark action type ', newBookmark.actionType);
+        console.log(`has id ${newBookmark.id}`);
+        console.log(newBookmark);
         if (newBookmark.title !== '' && newBookmark.url !== '') {
             switch(newBookmark.actionType) {
                 case 'new':
@@ -21,6 +23,9 @@ class ModalFormWrapper extends React.Component {
                     break;
                 case 'edit':
                     this.prepareUpdatingNewBookmark(newBookmark);
+                    break;
+                default: 
+                    this.prepareAddingNewBookmark(newBookmark);
                     break;
             }
             this.props.closeModal();
@@ -38,9 +43,6 @@ class ModalFormWrapper extends React.Component {
             parentId: extensionFolder.id
         };
 
-        console.log(bookmarkToCreate);
-        console.log(typeof bookmarkToCreate);
-
         chrome.bookmarks.create(bookmarkToCreate, (result) => {
             
             if (result === 'error')
@@ -52,12 +54,21 @@ class ModalFormWrapper extends React.Component {
         
     }
 
-    prepareUpdatingNewBookmark(newBookmark) {
-        this.props.updateBookmark({
-            newBookmarkTitle: newBookmark.title,
-            newBookmarkUrl: newBookmark.url
-        })
+    prepareUpdatingNewBookmark(updatedBookmark) {
+        chrome.bookmarks.update(updatedBookmark.id, {
+            title: updatedBookmark.title,
+            url: updatedBookmark.url
+        }, (result) => {
+            if (result === 'error') throw new Error('cant update bookmark')
+            this.props.updateBookmark({
+                title: updatedBookmark.title,
+                url: updatedBookmark.url,
+                id: updatedBookmark.id
+            })
+        });
+       
     }
+
     render() {
         return (
 

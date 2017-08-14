@@ -6,7 +6,8 @@ class ModalInnerForm extends React.Component {
         super(props);
         this.state = {
             title: props.editedBookmarkUrl,
-            url: props.editedBookmarkTitle
+            url: props.editedBookmarkTitle,
+            id: props.editedBookmarkId
         }
     }
 
@@ -23,7 +24,8 @@ class ModalInnerForm extends React.Component {
         this.props.onAddNewBookmark({
             title: this.state.title,
             url: this.state.url,
-            actionType: this.props.type
+            actionType: this.props.type,
+            id: this.state.id
         })
     }
     handleKeyPress = (event) => {
@@ -34,7 +36,8 @@ class ModalInnerForm extends React.Component {
     componentWillReceiveProps(props) {
         this.setState({
             title: props.editedBookmarkTitle,
-            url: props.editedBookmarkUrl
+            url: props.editedBookmarkUrl,
+            id: props.editedBookmarkId
         })
     }
     render() {
@@ -74,7 +77,8 @@ class ModalInnerForm extends React.Component {
 const mapStateToProps = (state) => {
     return {
         editedBookmarkTitle: state.bookmarksReducer.editedBookmark.title,
-        editedBookmarkUrl: state.bookmarksReducer.editedBookmark.url
+        editedBookmarkUrl: state.bookmarksReducer.editedBookmark.url,
+        editedBookmarkId: state.bookmarksReducer.editedBookmark.id
     }
 
 };
