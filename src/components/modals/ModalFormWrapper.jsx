@@ -9,6 +9,7 @@ import {connect} from "react-redux";
 import {bindActionCreators} from 'redux';
 import {addNewBookmark} from '../../store/actions/bookmarksActions';
 import {closeNewBookmarkModal} from '../../store/actions/modalsActions';
+import ColorFinder from '../helpers/ColorFinder';
 class ModalFormWrapper extends React.Component {
 
 
@@ -36,10 +37,10 @@ class ModalFormWrapper extends React.Component {
     }
     prepareAddingNewBookmark(newBookmark) {
         const extensionFolder = this.props.extensionFolder;
-
+        const urlWithColor = ColorFinder.getEncodedUrl(newBookmark.url);
         const bookmarkToCreate = {
             title: newBookmark.title,
-            url: newBookmark.url,
+            url: urlWithColor,
             parentId: extensionFolder.id
         };
 

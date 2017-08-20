@@ -17,3 +17,9 @@ it('gets correct color by site url without prefix', () => {
 it('doesnt get non existing site', () => {
     expect(ColorFinder.getColorFromUrl('netflix')).toBe('default');
 })
+
+it('correctly appends the colors to URL', () => {
+    let fbColor = '#abcabc';
+    let expectedUrl = 'facebook.com?color='+fbColor;
+    expect(ColorFinder.getEncodedUrl('facebook.com')).toBe(expectedUrl);
+})

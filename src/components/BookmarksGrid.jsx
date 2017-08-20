@@ -5,6 +5,7 @@ import Bookmark from './Bookmark.jsx';
 import {openNewBookmarkModal} from '../store/actions/modalsActions';
 import {getTestBookmark, setTestBookmark} from '../store/actions/debugActions';
 import {bindActionCreators} from 'redux';
+import ColorExtractor from './helpers/colorExtractor';
 import './styles/BookmarksGrid.css';
 class BookmarksGrid extends React.Component {
     constructor() {
@@ -24,7 +25,14 @@ class BookmarksGrid extends React.Component {
     fetchBookmarksFromFolder = (extensionFolder) => {
         console.log(extensionFolder);
         chrome.bookmarks.getChildren(extensionFolder.extensionFolder.id, (bookmarks) => {
-            this.props.updateFetchedBookmarks(bookmarks);
+            let coloredBookmarks = bookmarks.map((bookmark) => {
+                return {
+                    ...bookmark,
+                    color: ColorExtractor.extractColor(bookmark.url),
+                    url: ColorExtractor.extractUrl(bookmark.url)
+                }
+            });
+            this.props.updateFetchedBookmarks(coloredBookmarks);
 
             this.setState({
                 extensionFolder: extensionFolder.extensionFolder
@@ -34,9 +42,6 @@ class BookmarksGrid extends React.Component {
         })
     };
 
-    extractUrl = (fullUrl) => {
-        
-    }
     render() {
         return (
             <div className="bookmark__grid">
@@ -44,6 +49,7 @@ class BookmarksGrid extends React.Component {
                     return <Bookmark key={key} 
                     title={singleBookmark.title} 
                     id={singleBookmark.id} 
+                    color={singleBookmark.color}
                     url={singleBookmark.url}/>
                 })}
                 <button onClick={this.props.openNewBookmarkModal.bind(this)} className="button is-info bookmark__new"> + </button>

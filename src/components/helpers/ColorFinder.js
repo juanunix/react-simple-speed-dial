@@ -30,6 +30,10 @@ class ColorFinder {
         return foundSite ? foundSite.color : 'default';
     }
 
+    getEncodedUrl(urlToFind) {
+        return urlToFind + '?color=' + this.getColorFromUrl(urlToFind);
+    }
+
 }
 
 export default new ColorFinder
