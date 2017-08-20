@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
+import './styles/CurrentlyOpenedTabs.css';
 /* global chrome */
 class CurrentlyOpenedTabs extends React.Component {
     constructor() {
@@ -18,8 +19,11 @@ class CurrentlyOpenedTabs extends React.Component {
 
     componentDidMount() {
         chrome.tabs.query({}, (openedTabs) => {
+            let openedTabsWithoutChromePrefix = openedTabs.filter((tab) => {
+                return tab.url.indexOf('chrome://') < 0
+            });
             this.setState({
-                currentlyOpenedTabs: openedTabs
+                currentlyOpenedTabs: openedTabsWithoutChromePrefix
             })
         })
     }
@@ -27,8 +31,9 @@ class CurrentlyOpenedTabs extends React.Component {
         return (
             <ul className="opened-tabs__list">
                 {this.state.currentlyOpenedTabs.map(tab => {
-                    return ( <li className="opened-tabs__element">
-                        <p onClick={() => this.addNewBookmark(tab.title, tab.url)}> {tab.title} </p>
+                    return ( <li onClick={() => this.addNewBookmark(tab.title, tab.url)} className="opened-tabs__element">
+                        <span className="opened-tabs__title"> { tab.title } </span>
+                        <span className="opened-tabs__url"> { tab.url }</span>
                     </li> )
                     }
                 )}

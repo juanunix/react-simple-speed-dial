@@ -1,6 +1,6 @@
 import React from 'react';
 import BackgroundConfig from "./BackgroundConfig";
-
+import '../styles/ConfigWrapper.css';
 class ConfigWrapper extends React.Component {
     constructor() {
         super();

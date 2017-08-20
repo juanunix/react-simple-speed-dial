@@ -5,6 +5,7 @@ import Bookmark from './Bookmark.jsx';
 import {openNewBookmarkModal} from '../store/actions/modalsActions';
 import {getTestBookmark, setTestBookmark} from '../store/actions/debugActions';
 import {bindActionCreators} from 'redux';
+import './styles/BookmarksGrid.css';
 class BookmarksGrid extends React.Component {
     constructor() {
         super();
@@ -32,6 +33,10 @@ class BookmarksGrid extends React.Component {
             this.props.setExtensionFolder(extensionFolder.extensionFolder);
         })
     };
+
+    extractUrl = (fullUrl) => {
+        
+    }
     render() {
         return (
             <div className="bookmark__grid">
@@ -41,7 +46,7 @@ class BookmarksGrid extends React.Component {
                     id={singleBookmark.id} 
                     url={singleBookmark.url}/>
                 })}
-                <button onClick={this.props.openNewBookmarkModal.bind(this)} className="button is-info">New Bookmark</button>
+                <button onClick={this.props.openNewBookmarkModal.bind(this)} className="button is-info bookmark__new"> + </button>
             </div>
         );
     }

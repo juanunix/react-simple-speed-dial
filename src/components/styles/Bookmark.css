@@ -1,0 +1,19 @@
+.bookmark__container {
+    width: 200px;
+    position: relative;
+    height: 200px;
+    padding: 15px;
+    background: white;
+    box-shadow: 0px 1px 4px 1px rgba(0,0,0,.14);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.bookmark__new {
+    width: 50px;
+}
+
+.button__container {
+
+}

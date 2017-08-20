@@ -1,6 +1,7 @@
 /* global chrome */
 import React from 'react';
 import {connect} from 'react-redux';
+import './styles/Bookmark.css';
 class Bookmark extends React.Component {
 
     deleteBookmark = () => {
@@ -11,12 +12,14 @@ class Bookmark extends React.Component {
     }
     render() {
         return (
-            <div>
-                <a className="bookmark" href={this.props.url}>
+            <div className="bookmark__container">
+                <a className="bookmark bookmark__link" href={this.props.url}>
                     <p className="bookmark__name">{this.props.title}</p>
                 </a>
-                <button onClick={this.props.openEditModal.bind(this, this.props.title, this.props.url, this.props.id)} className="button">Edit</button>
-                <button onClick={this.deleteBookmark} className="button is-danger">Delete </button>
+                <div className="button__container">
+                    <button onClick={this.props.openEditModal.bind(this, this.props.title, this.props.url, this.props.id)} className="button bookmark__edit">Edit</button>
+                    <button onClick={this.deleteBookmark} className="button is-danger bookmark__delete">Delete </button>
+                </div>
             </div>
 
         )

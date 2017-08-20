@@ -1,0 +1,14 @@
+.opened-tabs__list {
+    padding: 15px;
+}
+
+.opened-tabs__element {
+    cursor: pointer;
+}
+
+.opened-tabs__url {
+    color: #c1c1c1;
+   
+    font-size: 13px;
+    margin-left: 15px;
+}
