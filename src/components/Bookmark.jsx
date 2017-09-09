@@ -12,10 +12,9 @@ class Bookmark extends React.Component {
     }
     render() {
         return (
-            <div className="bookmark__container">
+            <div className="bookmark__container" style={{backgroundColor: this.props.color}}>
                 <a className="bookmark bookmark__link" href={this.props.url}>
                     <p className="bookmark__name">{this.props.title}</p>
-                    <p className="bookmark__color"> {this.props.color} </p>
                 </a>
                 <div className="button__container">
                     <button onClick={this.props.openEditModal.bind(this, this.props.title, this.props.url, this.props.id)} className="button bookmark__edit">Edit</button>

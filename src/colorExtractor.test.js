@@ -15,4 +15,5 @@ it('correctly extracts the color from url', () => {
 it('returs default color for url with no color', () => {
     let extractorDefaultColor = ColorExtractor.defaultColor
     expect(ColorExtractor.extractColor('http://github.com')).toBe(extractorDefaultColor)
+    expect(ColorExtractor.extractColor('http://wykop.pl')).toBe(extractorDefaultColor);
 })

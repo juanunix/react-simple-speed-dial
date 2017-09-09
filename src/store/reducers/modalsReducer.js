@@ -45,6 +45,22 @@ const modalReducer = (state = modalsState, action) => {
 
         }
     }
+    if (action.type === 'CLOSE_ALL_BOOKMARK_MODALS') {
+        state = {
+            ...state,
+            modals: {
+                ...state.modals,
+                newBookmark: {
+                    ...state.modals.newBookmark,
+                    isOpened: false
+                },
+                editBookmark: {
+                    ...state.modals.editBookmark,
+                    isOpened: false
+                }
+            }
+        }
+    }
     if (action.type === 'OPEN_EDIT_BOOKMARK_MODAL') {
         state = {
             ...state,

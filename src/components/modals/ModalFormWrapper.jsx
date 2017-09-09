@@ -37,6 +37,7 @@ class ModalFormWrapper extends React.Component {
     }
     prepareAddingNewBookmark(newBookmark) {
         const extensionFolder = this.props.extensionFolder;
+        const newBookmarkColor = ColorFinder.getColorFromUrl(newBookmark.url);
         const urlWithColor = ColorFinder.getEncodedUrl(newBookmark.url);
         const bookmarkToCreate = {
             title: newBookmark.title,
@@ -49,7 +50,10 @@ class ModalFormWrapper extends React.Component {
             if (result === 'error')
                 alert('cannot create bookamrk!');
 
-            this.props.addNewBookmark(newBookmark)
+            this.props.addNewBookmark({
+                ...bookmarkToCreate,
+                color: newBookmarkColor
+            })
 
         });
         

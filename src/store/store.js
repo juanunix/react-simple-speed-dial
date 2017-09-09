@@ -5,8 +5,6 @@ import modalsReducer from './reducers/modalsReducer';
 import configReducer from './reducers/configReducer';
 import chromeReducer from './reducers/chromeReducer';
 
-import debugReducer from './reducers/debugReducer';
-
 import logger from 'redux-logger';
 
 const store = createStore(combineReducers({

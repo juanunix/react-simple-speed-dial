@@ -10,6 +10,12 @@ const bookmarksState = {
 };
 
 const bookmarksReducer = (state = bookmarksState, action) => {
+    if (action.type === 'BOOKMARKS_CHANGED') {
+        state = {
+            ...state,
+            hasBookmarksChanged: action.status
+        }
+    }
     if (action.type === 'DELETE_BOOKMARK') {
         state = {
             ...state,
@@ -38,6 +44,18 @@ const bookmarksReducer = (state = bookmarksState, action) => {
         }
     }
 
+    if(action.type === 'CLEAR_EDITED_BOOKMARK') {
+        state = {
+            ...state,
+            editedBookmark: {
+                ...state.editedBookmark,
+                title: '',
+                url: '',
+                id: ''
+            }
+        }
+    }
+
     if (action.type === 'UPDATE_BOOKMARK') {
         state = {
             ...state,
@@ -46,7 +64,7 @@ const bookmarksReducer = (state = bookmarksState, action) => {
                     return {
                         ...bookmark,
                         title: action.updatedBookmark.title,
-                        url: action.updatedBookmark.title
+                        url: action.updatedBookmark.url
                     }
                 } else return bookmark
             })

@@ -33,6 +33,10 @@ const mapDispatchToProps = (dispatch) => {
             dispatch({
                 type: 'ADD_NEW_BOOKMARK',
                 newBookmark
+            });
+
+            dispatch({
+                type: 'CLEAR_EDITED_BOOKMARK'
             })
         }
     }

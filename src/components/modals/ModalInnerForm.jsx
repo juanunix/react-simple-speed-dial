@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
-
+import '../styles/Buttons.css';
 class ModalInnerForm extends React.Component {
     constructor(props) {
         super(props);
@@ -18,12 +18,17 @@ class ModalInnerForm extends React.Component {
             [name]: event.target.value
         });
     }
+
+    addUrlPrefix(urlToAddPrefixTo) {
+        if (urlToAddPrefixTo.indexOf('http://') > -1 || urlToAddPrefixTo.indexOf('https://') > -1) {
+            return urlToAddPrefixTo
+        } else return 'https://' + urlToAddPrefixTo
+    }
     addNewBookmark = () => {
-        console.log(`state in modalinnferform `);
-        console.log(this.state);
+        
         this.props.onAddNewBookmark({
             title: this.state.title,
-            url: this.state.url,
+            url: this.addUrlPrefix(this.state.url),
             actionType: this.props.type,
             id: this.state.id
         })
@@ -39,6 +44,9 @@ class ModalInnerForm extends React.Component {
             url: props.editedBookmarkUrl,
             id: props.editedBookmarkId
         })
+    }
+    closeBookmarkModal = (event) => {
+        this.props.closeBookmark();
     }
     render() {
         return (
@@ -67,8 +75,11 @@ class ModalInnerForm extends React.Component {
                     </p>
 
                 </div>
-                <button className="button" onClick={this.addNewBookmark} > Save </button>
-
+                <div className="buttons-container">
+                    <button className="button is-success" onClick={this.addNewBookmark}>Save</button>
+                    <button className="button is-danger" onClick={this.closeBookmarkModal}>Cancel</button>
+                </div>
+                
             </div>
         )
     }
@@ -84,8 +95,13 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {}
-};
+    return {
+        closeBookmarkModal: () => {
+            dispatch({
+                type: 'CLOSE_ALL_BOOKMARK_MODALS'
+            });
+    }
+}};
 
 
 

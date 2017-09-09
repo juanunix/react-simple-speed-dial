@@ -1,16 +1,7 @@
-const ColorLibrary = [
-    {
-        url: 'github.com',
-        color: '#000000'
-    },
-    {
-        url: 'facebook.com',
-        color: '#abcabc'
-    }
-]
-
+import ColorLibrary from './ColorLibrary.js';
 class ColorFinder {
     constructor() {
+        this.nonExistingSiteColor = "#000000"
         this.colorLibrary = ColorLibrary;
     }
     parseUrl(urlToParse) {
@@ -27,7 +18,7 @@ class ColorFinder {
         let foundSite = this.colorLibrary.find((site) => {
            return site.url === parsedUrl
        })
-        return foundSite ? foundSite.color : 'default';
+        return foundSite ? foundSite.color : this.nonExistingSiteColor;
     }
 
     getEncodedUrl(urlToFind) {

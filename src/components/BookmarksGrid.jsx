@@ -3,17 +3,21 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Bookmark from './Bookmark.jsx';
 import {openNewBookmarkModal} from '../store/actions/modalsActions';
-import {getTestBookmark, setTestBookmark} from '../store/actions/debugActions';
 import {bindActionCreators} from 'redux';
 import ColorExtractor from './helpers/colorExtractor';
 import './styles/BookmarksGrid.css';
 class BookmarksGrid extends React.Component {
     constructor() {
         super();
+        this.extensionFolderName = 'extensionFolder';
         this.state = {
             extensionFolder: {}
         };
-        this.fetchExtensionFolder('extensionFolder');
+    }
+
+    componentWillMount() {
+        // chrome.storage.local.get('hasBookmarksChanged');
+            this.fetchExtensionFolder(this.extensionFolderName);
     }
 
     fetchExtensionFolder = (name) => {
@@ -81,6 +85,8 @@ const mapDispatchToProps = (dispatch) => {
                 type: 'SET_FETCHED_BOOKMARKS',
                 fetchedBookmarks
             }),
+            
+            
 
             setExtensionFolder: (extensionFolder) => {
                 dispatch({
